@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nono ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=Great+Vibes&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+ background:#08030b;
+ color:white;
+ font-family:'Cairo',sans-serif;
+ overflow:hidden;
+ min-height:100vh;
+}
+
+#stars{
+ position:fixed;inset:0;
+ background:
+ radial-gradient(circle at 20% 20%,#41102f 0,transparent 35%),
+ radial-gradient(circle at 80% 80%,#240c40 0,transparent 35%),
+ #08030b;
+ z-index:-2;
+}
+
+.star{
+ position:fixed;
+ width:2px;height:2px;
+ background:white;border-radius:50%;
+ animation:twinkle 2s infinite alternate;
+ pointer-events:none;
+}
+
+@keyframes twinkle{
+ from{opacity:.15;transform:scale(.7)}
+ to{opacity:1;transform:scale(1.7)}
+}
+
+.screen{
+ position:fixed;inset:0;
+ display:flex;flex-direction:column;
+ align-items:center;justify-content:center;
+ text-align:center;padding:25px;
+ transition:1s;
+}
+
+.hidden{opacity:0;pointer-events:none;transform:scale(1.08)}
+
+.small{
+ color:#eaa2cf;letter-spacing:5px;
+ font-size:11px;margin-bottom:20px;
+}
+
+h1{
+ font-size:clamp(42px,12vw,85px);
+ font-weight:900;
+ background:linear-gradient(90deg,#fff,#ff8acb,#fff);
+ background-size:200%;
+ -webkit-background-clip:text;
+ color:transparent;
+ animation:shine 3s linear infinite;
+}
+
+@keyframes shine{to{background-position:200%}}
+
+.subtitle{color:#d5a8c5;margin:15px 0 35px;font-size:14px}
+
+button{
+ border:1px solid #ff8bc9;
+ background:linear-gradient(135deg,#a51d65,#53143f);
+ color:white;padding:15px 30px;
+ border-radius:40px;font-family:inherit;
+ font-size:15px;cursor:pointer;
+ box-shadow:0 0 30px #d52b8160;
+ transition:.3s;
+}
+
+button:active{transform:scale(.94)}
+
+.heart{
+ font-size:65px;
+ filter:drop-shadow(0 0 25px #ff258b);
+ animation:beat 1s infinite;
+ margin-bottom:20px;
+}
+
+@keyframes beat{
+ 0%,100%{transform:scale(1)}
+ 15%{transform:scale(1.18)}
+ 30%{transform:scale(1)}
+ 45%{transform:scale(1.12)}
+}
+
+.envelope{
+ width:210px;height:140px;
+ background:#a82c68;
+ position:relative;
+ margin:35px auto;
+ border-radius:8px;
+ cursor:pointer;
+ box-shadow:0 0 45px #ff4b9a55;
+}
+
+.envelope:before{
+ content:"";position:absolute;inset:0;
+ background:#e65b9b;
+ clip-path:polygon(0 0,100% 0,50% 65%);
+ transform-origin:top;
+ transition:1s;
+ z-index:2;
+}
+
+.envelope.open:before{transform:rotateX(180deg)}
+
+.envelope:after{
+ content:"❤️";position:absolute;
+ top:48%;left:50%;transform:translate(-50%,-50%);
+ font-size:30px;z-index:3;
+}
+
+.letter{
+ background:linear-gradient(145deg,#fff0f8,#ffe0ed);
+ color:#672346;
+ width:min(100%,390px);
+ border-radius:20px;padding:27px 22px;
+ box-shadow:0 0 50px #f04e9b35;
+ line-height:2.1;
+ font-size:14px;
+ max-height:65vh;
+ overflow:auto;
+}
+
+.script{
+ font-family:'Great Vibes',cursive;
+ font-size:45px;color:#c32676;
+ margin-bottom:10px;
+}
+
+#typed{white-space:pre-line}
+
+.final{
+ font-size:clamp(30px,8vw,55px);
+ color:#ff9bce;
+ text-shadow:0 0 30px #ff238d;
+}
+
+.floating{
+ position:fixed;bottom:-30px;
+ font-size:20px;
+ pointer-events:none;
+ animation:floatUp 6s linear forwards;
+ z-index:10;
+}
+
+@keyframes floatUp{
+ to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+
+.glowline{
+ width:100px;height:2px;
+ background:#ff8acb;
+ box-shadow:0 0 20px #ff4aab;
+ margin:20px auto;
+}
+
+#music{
+ position:fixed;bottom:20px;left:20px;
+ padding:10px 16px;font-size:12px;
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+
+<section class="screen" id="intro">
+ <div class="small">A SPECIAL SURPRISE FOR SOMEONE SPECIAL</div>
+ <div class="heart">❤️</div>
+ <h1>NONO</h1>
+ <p class="subtitle">في حد عامل مفاجأة صغيرة ليكي...</p>
+ <button onclick="start()">افتحي عالمك الخاص ✨</button>
+</section>
+
+<section class="screen hidden" id="gift">
+ <div class="small">ONE HEART • ONE STORY • ONE GIRL</div>
+ <h1 style="font-size:45px">يا نونو ❤️</h1>
+ <p class="subtitle">في رسالة مستنياكي جوا الظرف ده...</p>
+ <div class="envelope" id="env" onclick="openLetter()"></div>
+ <p style="color:#e9a4ca;font-size:12px">اضغطي على الظرف وافتحي رسالتك</p>
+</section>
+
+<section class="screen hidden" id="message">
+ <div class="letter">
+  <div class="script">To My Nono ❤️</div>
+  <div class="glowline"></div>
+  <p id="typed"></p>
+  <div class="glowline"></div>
+  <p style="text-align:center;font-weight:bold">
+   بحبك يا أجمل صدفة في حياتي ❤️
+  </p>
+ </div>
+ <button style="margin-top:20px" onclick="showFinal()">
+ لسه في مفاجأة أخيرة... 👀
+ </button>
+</section>
+
+<section class="screen hidden" id="ending">
+ <div class="heart">💗</div>
+ <div class="small">MY FAVORITE PERSON</div>
+ <div class="final">Nono Forever</div>
+ <div class="glowline"></div>
+ <h2 style="font-size:19px">إنتِ مش مجرد شخص بحبه...</h2>
+ <p class="subtitle">إنتِ الحكاية اللي نفسي متخلصش أبداً.</p>
+ <p style="font-size:35px;margin:20px">∞ ❤️</p>
+ <button onclick="celebrate()">اضغطي هنا يا نونو 💝</button>
+ <p id="secret" style="margin-top:25px;color:#ff9bce"></p>
+</section>
+
+<button id="music" onclick="toggleMusic()">♫ موسيقى</button>
+
+<script>
+// نجوم الخلفية
+for(let i=0;i<100;i++){
+ let s=document.createElement('div');
+ s.className='star';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*100+'%';
+ s.style.animationDelay=Math.random()*3+'s';
+ document.body.appendChild(s);
+}
+
+// الانتقال بين الشاشات
+function changeScreen(from,to){
+ document.getElementById(from).classList.add('hidden');
+ document.getElementById(to).classList.remove('hidden');
+}
+
+function start(){
+ changeScreen('intro','gift');
+ hearts();
+}
+
+function openLetter(){
+ let env=document.getElementById('env');
+ env.classList.add('open');
+ setTimeout(()=>{
+  changeScreen('gift','message');
+  typeMessage();
+ },800);
+}
+
+// الرسالة: عدّل الكلام براحتك
+const message=`
+نونووو ❤️
+
+عارفة إنتِ بالنسبالي إيه؟
+إنتِ واحدة من أجمل الحاجات اللي حصلتلي.
+
+يمكن الكلام مهما كان حلو مش هيعرف يوصف
+قد إيه وجودك بيفرق معايا،
+وقد إيه ضحكتك لوحدها ممكن تغيّر يومي كله.
+
+أنا مش عامل الموقع ده عشان أبهرِك وبس،
+أنا عامله عشان يكون عندك حاجة صغيرة
+ترجعي تفتحيها كل ما تحبي تفتكري
+إن فيه قلب بيختارك كل يوم.
+
+نفسي أفضل أشوف ضحكتك،
+وأكون سبب في فرحتك،
+وأفضل أعملك مفاجآت حتى لو بسيطة.
+
+إنتِ ليكي حتة خاصة محدش يعرف يوصلها.
+
+بحبك يا نونو...
+ويا رب كل اللي جاي يكون أحلى بينا.
+
+❤️❤️❤️
+`;
+
+let index=0;
+function typeMessage(){
+ let el=document.getElementById('typed');
+ el.textContent='';
+ index=0;
+ let timer=setInterval(()=>{
+  el.textContent+=message[index];
+  index++;
+  if(index>=message.length)clearInterval(timer);
+ },48);
+}
+
+function showFinal(){
+ changeScreen('message','ending');
+ hearts();
+}
+
+function hearts(){
+ setInterval(()=>{
+  let h=document.createElement('div');
+  h.className='floating';
+  h.textContent=['❤️','💗','💕','💖','🌸'][Math.floor(Math.random()*5)];
+  h.style.left=Math.random()*100+'%';
+  h.style.animationDuration=(4+Math.random()*4)+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+ },500);
+}
+
+function celebrate(){
+ for(let i=0;i<40;i++){
+  setTimeout(()=>{
+   let h=document.createElement('div');
+   h.className='floating';
+   h.textContent=['❤️','💖','✨','🌹','💕'][Math.floor(Math.random()*5)];
+   h.style.left=Math.random()*100+'%';
+   h.style.fontSize=(20+Math.random()*25)+'px';
+   document.body.appendChild(h);
+   setTimeout(()=>h.remove(),6000);
+  },i*70);
+ }
+ document.getElementById('secret').textContent=
+ 'المفاجأة الحقيقية؟ إنك إنتِ المفاجأة الحلوة في حياتي ❤️';
+}
+
+// نغمة بسيطة اختيارية
+let audioCtx;
+let playing=false;
+function toggleMusic(){
+ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+ if(audioCtx.state==='suspended')audioCtx.resume();
+ playing=!playing;
+ document.getElementById('music').textContent=playing?'♫ شغالة':'♫ موسيقى';
+ if(playing)playNotes();
+}
+function playNotes(){
+ if(!playing)return;
+ const notes=[523.25,659.25,783.99,659.25];
+ notes.forEach((freq,i)=>{
+  let osc=audioCtx.createOscillator();
+  let gain=audioCtx.createGain();
+  osc.frequency.value=freq;
+  osc.type='sine';
+  gain.gain.setValueAtTime(.0001,audioCtx.currentTime+i*.35);
+  gain.gain.exponentialRampToValueAtTime(.035,audioCtx.currentTime+i*.35+.04);
+  gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+i*.35+.3);
+  osc.connect(gain);gain.connect(audioCtx.destination);
+  osc.start(audioCtx.currentTime+i*.35);
+  osc.stop(audioCtx.currentTime+i*.35+.35);
+ });
+ setTimeout(()=>{if(playing)playNotes()},1800);
+}
+</script>
+</body>
+</html>
